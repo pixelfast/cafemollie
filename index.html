@@ -3190,35 +3190,23 @@
 
       // Get directions button based on OS
       ;(function () {
-        // ============================================================
-        // DESTINATION: Cafe Mollie – precise coordinates + address
-        // ============================================================
-        const lat = 33.52495 // Latitude from your Google Maps link
-        const lng = -112.04676 // Longitude from your Google Maps link
+        // Destination coordinates & address
+        const lat = 33.52495
+        const lng = -112.04676
         const address = 'Cafe Mollie, 6031 N 16th St Ste 5, Phoenix, AZ 85016'
 
-        // ----- Google Maps URL (works everywhere) -----
-        // Uses Google's official directions API with 'api=1' (required parameter)
         const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}&destination_place_id=${lat},${lng}`
-
-        // ----- Apple Maps URL (best for iPhones) -----
-        // Uses the 'q' parameter for a search/directions request
         const appleMapsUrl = `https://maps.apple.com/?q=${encodeURIComponent(address)}&ll=${lat},${lng}`
 
-        // ----- Device detection -----
-        // Check if the user is on an Apple handheld device (iPhone, iPad, iPod)
         const isAppleDevice = /iPhone|iPad|iPod/i.test(navigator.userAgent)
-
-        // ----- Attach click handler to the button -----
         const btn = document.getElementById('directionsBtn')
+
         if (btn) {
           btn.addEventListener('click', function () {
             if (isAppleDevice) {
-              // iOS / iPadOS → Apple Maps
-              window.open(appleMapsUrl, '_blank')
+              window.location.href = appleMapsUrl // ✅ no blank tab
             } else {
-              // Android, Windows, Linux, macOS, etc. → Google Maps
-              window.open(googleMapsUrl, '_blank')
+              window.location.href = googleMapsUrl // ✅ no blank tab
             }
           })
         }
