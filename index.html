@@ -1214,6 +1214,7 @@
       }
       .reviews-wrap {
         overflow: hidden;
+        width: 100%;
       }
       .reviews-track {
         display: flex;
@@ -1221,7 +1222,7 @@
         transition: transform 0.5s var(--transition);
       }
       .review-card {
-        min-width: 350px;
+        min-width: min(350px, calc(100vw - 48px));
         background: var(--white);
         border-radius: var(--radius-md);
         padding: 32px;
@@ -1241,6 +1242,8 @@
         line-height: 1.65;
         color: var(--text-body);
         margin-bottom: 22px;
+        overflow-wrap: break-word;
+        word-break: break-word;
       }
       .r-author {
         display: flex;
@@ -1259,6 +1262,9 @@
         color: var(--white);
         font-family: 'Inter', sans-serif;
         flex-shrink: 0;
+      }
+      .r-author > div:not(.r-avatar):not(.r-google) {
+        min-width: 0;
       }
       .r-name {
         font-size: 0.86rem;
@@ -1483,7 +1489,7 @@
         align-items: flex-end;
         padding: 22px;
         background: linear-gradient(180deg, transparent 60%, rgba(26, 20, 16, 0.12));
-        opacity: 0;
+        /* opacity: 0; */
         transition: opacity 0.3s;
         justify-content: flex-end;
       }
@@ -2023,7 +2029,7 @@
           <li><a href="#visit">Visit</a></li>
         </ul>
         <div style="display: flex; align-items: center; gap: 12px">
-          <a href="#contact" class="nav-order-btn">Order Online</a>
+          <a href="#order" class="nav-order-btn">Order Online</a>
           <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
         </div>
       </div>
@@ -2047,7 +2053,7 @@
           <p class="hero-subtext">Handcrafted Vietnamese coffee, organic matcha, premium boba, and fresh-baked pastries — made with care, served daily on North 16th Street.</p>
           <div class="hero-actions">
             <a href="#menu" class="btn btn-primary"><span>View Full Menu</span></a>
-            <a href="#contact" class="btn btn-outline">Order Online</a>
+            <a href="#order" class="btn btn-outline">Order Online</a>
           </div>
           <div class="hero-review-badge">
             <span class="review-stars">★★★★★</span>
@@ -2537,6 +2543,27 @@
       </div>
     </section>
 
+    <!-- ORDER ONLINE -->
+    <section id="order" style="background: var(--cream-dark); padding: 80px 24px; text-align: center;">
+      <div style="max-width: 600px; margin: 0 auto;">
+        <p style="font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); font-weight: 600; margin-bottom: 16px;">Uber Eats</p>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--espresso); margin-bottom: 16px;">Order Delivery or Pickup</h2>
+        <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 40px;">Fresh from our kitchen to your door — or ready for you at the counter.</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://www.ubereats.com/store/cafe-mollie/k8xTPnKLXaWqOP1Wx8DYBA?diningMode=PICKUP"
+             target="_blank" rel="noopener"
+             style="display: inline-block; padding: 16px 36px; background: var(--espresso); color: var(--cream); font-family: inherit; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: var(--radius-sm); transition: background 0.25s;">
+            🛍 Pickup
+          </a>
+          <a href="https://www.ubereats.com/store/cafe-mollie/k8xTPnKLXaWqOP1Wx8DYBA?diningMode=DELIVERY"
+             target="_blank" rel="noopener"
+             style="display: inline-block; padding: 16px 36px; background: var(--sage); color: var(--white); font-family: inherit; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: var(--radius-sm); transition: background 0.25s;">
+            🚴 Delivery
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- DRINK HIGHLIGHT CARDS -->
     <section id="drinks" class="section-pad">
       <div class="container">
@@ -2737,7 +2764,7 @@
           </div>
         </div>
         <div class="reviews-wrap reveal">
-          <div class="reviews-track" id="revTrack" style="transform: translateX(-1603px)">
+          <div class="reviews-track" id="revTrack">
             <div class="review-card">
               <div class="r-stars">★★★★★</div>
               <div class="r-text">"The Vietnamese iced coffee here is absolutely the best in Phoenix. I've been to every café in the Valley and nothing comes close to the condensed milk ratio they use. I come here every single weekday morning. Fast WiFi too — perfect for remote work."</div>
