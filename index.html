@@ -11,6 +11,11 @@
     <title>Cafe Mollie — Crafted Coffee. Authentic Flavor. Phoenix, AZ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link rel="icon" type="image/png" href="images/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="images/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="images/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="images/favicons/site.webmanifest" />
     <link href="css/css2.css" rel="stylesheet" />
     <style>
       :root {
@@ -323,7 +328,7 @@
       .hamburger span {
         display: block;
         width: 24px;
-        height: 2px;
+        height: 5px;
         background: var(--cream);
         transition: all 0.3s;
         border-radius: 2px;
@@ -1007,6 +1012,7 @@
       /* WHY */
       #why {
         background: var(--espresso-soft);
+        display: none; // removed this section for now, can bring back later if needed
       }
       .why-grid {
         display: grid;
@@ -1842,6 +1848,9 @@
         .container {
           padding: 0 20px;
         }
+        .nav-logo-name {
+          font-size: 1.5rem;
+        }
         .featured-header {
           padding: 35px 0 50px !important;
         }
@@ -1864,7 +1873,7 @@
           opacity: 0;
         }
         .hamburger.open span:nth-child(3) {
-          transform: translateY(-7px) rotate(-45deg);
+          transform: translateY(-13px) rotate(-45deg);
         }
         h1 {
           font-size: 2.4rem;
