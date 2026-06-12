@@ -356,6 +356,8 @@
         color: var(--cream);
         font-weight: 500;
         transition: color 0.2s;
+        width: 100%;
+        text-align: center;
       }
       .mobile-menu a:hover {
         color: var(--gold);
@@ -576,7 +578,8 @@
         bottom: 28px;
         right: 28px;
         z-index: 900;
-        display: flex;
+        /* display: flex; */
+        display: none; // don't need this for now since we have the order button in the nav, but can be easily re-enabled if we want to add a floating order button later
         align-items: center;
         gap: 9px;
         padding: 13px 24px;
@@ -1228,7 +1231,9 @@
         transition: transform 0.5s var(--transition);
       }
       .review-card {
-        min-width: min(350px, calc(100vw - 48px));
+        width: min(350px, calc(100vw - 48px));
+        max-width: 100%;
+        flex: 0 0 auto;
         background: var(--white);
         border-radius: var(--radius-md);
         padding: 32px;
@@ -1338,7 +1343,7 @@
       }
       .insta-header {
         text-align: center;
-        padding: 72px 0 48px;
+        padding: 72px 0 48px !important;
       }
       .insta-header .eyebrow {
         display: block;
@@ -2849,12 +2854,8 @@
       <div class="insta-header container">
         <span class="eyebrow">Follow Along</span>
         <h2>@cafemollie</h2>
-        <a href="https://instagram.com/" target="_blank" rel="noopener" class="insta-handle">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-          </svg>
+        <a href="https://www.instagram.com/cafemollie/?hl=en" target="_blank" rel="noopener" class="insta-handle">
+          <img src="images/ig-icon.png" width="30" height="30" alt="Instagram" style="display: inline-block; vertical-align: middle" />
           Follow on Instagram
         </a>
       </div>
@@ -2899,18 +2900,11 @@
       <div class="container">
         <div class="visit-grid">
           <div class="reveal-left">
-            <div class="map-placeholder">
-              <div class="map-bg">
-                <div class="map-pin">
-                  <div class="pin-head"><span>☕</span></div>
-                  <div class="pin-shadow"></div>
-                </div>
-                <div class="map-label">Cafe Mollie</div>
-              </div>
-              <div class="map-hover">
-                <!-- <a href="https://www.google.com/maps/place/Cafe+Mollie/@33.5249296,-112.04933,925m/data=!3m2!1e3!4b1!4m6!3m5!1s0x872b0d0513a8516b:0xe4405012e306abc3!8m2!3d33.5249296!4d-112.0467551!16s%2Fg%2F11n8sr_1xg!5m1!1e2?entry=ttu&g_ep=EgoyMDI2MDYwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn btn-sage btn-sm">Open in Google Maps →</a> -->
-                <button class="directions-btn btn btn-sage btn-sm">Open in Maps →</button>
-              </div>
+            <div style="height: 400px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card)">
+              <iframe src="https://maps.google.com/maps?q=Cafe+Mollie,6031+N+16th+St,Phoenix,AZ+85016&z=15&output=embed" width="100%" height="100%" style="border: 0; display: block" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Cafe Mollie location"> </iframe>
+            </div>
+            <div style="margin-top: 12px; text-align: right">
+              <button class="directions-btn btn btn-sage btn-sm">Get Directions →</button>
             </div>
           </div>
           <div class="reveal-right">
@@ -2918,7 +2912,8 @@
             <h2 style="margin-bottom: 32px">Your New<br />Phoenix Spot.</h2>
             <div class="detail-group">
               <div class="detail-label">Address</div>
-              <div class="detail-value">6031 N 16th St, Suite 5<br />Phoenix, AZ 85016</div>
+              <!-- <div class="detail-value">6031 N 16th St, Suite 5<br />Phoenix, AZ 85016</div> -->
+              <button class="detail-value directions-btn" style="text-align: left; text-decoration: underline">6031 N 16th St, Suite 5<br />Phoenix, AZ 85016</button>
             </div>
             <div class="detail-group">
               <div class="detail-label">Hours</div>
@@ -2933,7 +2928,7 @@
             </div>
             <div class="visit-actions">
               <!-- <a href="https://www.google.com/maps/dir/33.6466746,-111.9849824/Cafe+Mollie,+6031+N+16th+St+suite+5,+Phoenix,+AZ+85016/@33.5894671,-112.09815,29575m/data=!3m2!1e3!4b1!4m17!1m7!3m6!1s0x872b0d0513a8516b:0xe4405012e306abc3!2sCafe+Mollie!8m2!3d33.5249296!4d-112.0467551!16s%2Fg%2F11n8sr_1xg!4m8!1m1!4e1!1m5!1m1!1s0x872b0d0513a8516b:0xe4405012e306abc3!2m2!1d-112.0468007!2d33.5249981!5m1!1e2?entry=ttu&g_ep=EgoyMDI2MDYwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn btn-primary"><span>Get Directions</span></a> -->
-              <button class="directions-btn btn btn-primary"><span>Get Directions</span></button>
+              <!-- <button class="directions-btn btn btn-primary"><span>Get Directions</span></button> -->
               <!-- <a href="tel:6026122313" class="btn btn-sage hide">Call Us</a> -->
             </div>
           </div>
@@ -2950,18 +2945,14 @@
             <h2 style="margin-bottom: 16px; margin-top: 12px">We'd Love to<br />Hear from You.</h2>
             <p style="margin-bottom: 28px">Questions about catering, private events, or just want to say hi? Reach out and we'll get back to you within one business day.</p>
             <div class="social-row">
-              <a href="https://instagram.com/" target="_blank" rel="noopener" class="social-btn" title="Instagram">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
+              <a href="https://www.instagram.com/cafemollie/?hl=en" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+                <img src="images/ig-icon.png" width="30" height="30" alt="Instagram" />
               </a>
-              <a href="https://facebook.com/" target="_blank" rel="noopener" class="social-btn" title="Facebook">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
+              <a href="https://www.facebook.com/p/Caf%C3%A8-Mollie-100075759735028/" target="_blank" rel="noopener" class="social-btn" title="Facebook">
+                <img src="images/fb-icon.png" width="30" height="30" alt="Facebook" />
               </a>
-              <a href="https://tiktok.com/" target="_blank" rel="noopener" class="social-btn" title="TikTok">🎵</a>
-              <a href="https://yelp.com/" target="_blank" rel="noopener" class="social-btn" title="Yelp">⭐</a>
+              <!-- <a href="https://tiktok.com/" target="_blank" rel="noopener" class="social-btn" title="TikTok">🎵</a>
+              <a href="https://yelp.com/" target="_blank" rel="noopener" class="social-btn" title="Yelp">⭐</a> -->
             </div>
             <div class="newsletter-box">
               <div class="nl-label">Newsletter</div>
@@ -3033,17 +3024,13 @@
         <div class="footer-bottom">
           <div class="footer-copy">© 2025 Cafe Mollie. All rights reserved. Phoenix, Arizona.</div>
           <div class="footer-social-row">
-            <a href="https://instagram.com/" target="_blank" rel="noopener" title="Instagram">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
+            <a href="https://www.instagram.com/cafemollie/?hl=en" target="_blank" rel="noopener" title="Instagram">
+              <img src="images/ig-icon.png" width="20" height="20" alt="Instagram" />
             </a>
-            <a href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
+            <a href="https://www.facebook.com/p/Caf%C3%A8-Mollie-100075759735028/" target="_blank" rel="noopener" title="Facebook">
+              <img src="images/fb-icon.png" width="20" height="20" alt="Facebook" />
             </a>
-            <a href="https://yelp.com/" target="_blank" rel="noopener" title="Yelp">⭐</a>
+            <!-- <a href="https://yelp.com/" target="_blank" rel="noopener" title="Yelp">⭐</a> -->
           </div>
         </div>
       </div>
