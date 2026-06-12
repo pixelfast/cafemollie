@@ -356,7 +356,15 @@
         color: var(--gold);
       }
       .mobile-menu-close {
-        display: none;
+        position: absolute;
+        top: 24px;
+        right: 32px;
+        font-size: 2rem;
+        color: var(--cream);
+        cursor: pointer;
+        background: none;
+        border: none;
+        line-height: 1;
       }
 
       /* HERO */
@@ -401,9 +409,6 @@
         margin-bottom: 28px;
         opacity: 0;
         animation: fadeUp 0.8s var(--transition) 0.2s forwards;
-      }
-      .hide {
-        display: none;
       }
       .live-dot {
         width: 7px;
@@ -525,7 +530,7 @@
         bottom: 32px;
         left: 50%;
         transform: translateX(-50%);
-        display: none;
+        display: flex;
         flex-direction: column;
         align-items: center;
         gap: 8px;
@@ -1834,12 +1839,6 @@
         .container {
           padding: 0 20px;
         }
-        .featured-header {
-          padding: 35px 0 50px !important;
-        }
-        .scroll-cue {
-          display: flex;
-        }
         .section-pad {
           padding: 72px 0;
         }
@@ -1848,15 +1847,6 @@
         }
         .hamburger {
           display: flex;
-        }
-        .hamburger.open span:nth-child(1) {
-          transform: translateY(7px) rotate(45deg);
-        }
-        .hamburger.open span:nth-child(2) {
-          opacity: 0;
-        }
-        .hamburger.open span:nth-child(3) {
-          transform: translateY(-7px) rotate(-45deg);
         }
         h1 {
           font-size: 2.4rem;
@@ -2875,10 +2865,10 @@
                   <div class="pin-head"><span>☕</span></div>
                   <div class="pin-shadow"></div>
                 </div>
-                <div class="map-label">Cafe Mollie</div>
+                <div class="map-label">Cafe Mollie · Suite 5</div>
               </div>
               <div class="map-hover">
-                <a href="https://www.google.com/maps/place/Cafe+Mollie/@33.5249296,-112.04933,925m/data=!3m2!1e3!4b1!4m6!3m5!1s0x872b0d0513a8516b:0xe4405012e306abc3!8m2!3d33.5249296!4d-112.0467551!16s%2Fg%2F11n8sr_1xg!5m1!1e2?entry=ttu&g_ep=EgoyMDI2MDYwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn btn-sage btn-sm">Open in Google Maps →</a>
+                <a href="https://maps.google.com/?q=6031+N+16th+St+Suite+5+Phoenix+AZ+85016" target="_blank" rel="noopener" class="btn btn-sage btn-sm">Open in Google Maps →</a>
               </div>
             </div>
           </div>
@@ -2901,8 +2891,8 @@
               <div class="detail-value"><a href="tel:6026122313">(602) 612-2313</a></div>
             </div>
             <div class="visit-actions">
-              <a href="https://www.google.com/maps/dir/33.6466746,-111.9849824/Cafe+Mollie,+6031+N+16th+St+suite+5,+Phoenix,+AZ+85016/@33.5894671,-112.09815,29575m/data=!3m2!1e3!4b1!4m17!1m7!3m6!1s0x872b0d0513a8516b:0xe4405012e306abc3!2sCafe+Mollie!8m2!3d33.5249296!4d-112.0467551!16s%2Fg%2F11n8sr_1xg!4m8!1m1!4e1!1m5!1m1!1s0x872b0d0513a8516b:0xe4405012e306abc3!2m2!1d-112.0468007!2d33.5249981!5m1!1e2?entry=ttu&g_ep=EgoyMDI2MDYwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn btn-primary"><span>Get Directions</span></a>
-              <a href="tel:6026122313" class="btn btn-sage hide">Call Us</a>
+              <a href="https://maps.google.com/?q=6031+N+16th+St+Suite+5+Phoenix+AZ+85016" target="_blank" rel="noopener" class="btn btn-primary"><span>Get Directions</span></a>
+              <a href="tel:6026122313" class="btn btn-sage">Call Us</a>
             </div>
           </div>
         </div>
@@ -3021,33 +3011,28 @@
       // NAV SCROLL
       const nav = document.getElementById('navbar')
       const floatBtn = document.getElementById('float-order')
-      function updateNav() {
-        if (window.scrollY > 60) {
-          nav.classList.add('scrolled')
-          //floatBtn.classList.add('visible')
-        } else {
-          nav.classList.remove('scrolled')
-          floatBtn.classList.remove('visible')
-        }
-      }
-      window.addEventListener('scroll', updateNav, { passive: true })
-      updateNav()
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (window.scrollY > 60) {
+            nav.classList.add('scrolled')
+            floatBtn.classList.add('visible')
+          } else {
+            nav.classList.remove('scrolled')
+            floatBtn.classList.remove('visible')
+          }
+        },
+        { passive: true },
+      )
 
       // MOBILE MENU
-      const hamburger = document.getElementById('hamburger')
-      hamburger.addEventListener('click', () => {
-        if (hamburger.classList.contains('open')) {
-          closeMobile()
-        } else {
-          document.getElementById('mobileMenu').classList.add('open')
-          hamburger.classList.add('open')
-          document.body.style.overflow = 'hidden'
-        }
+      document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.add('open')
+        document.body.style.overflow = 'hidden'
       })
       document.getElementById('menuClose').addEventListener('click', closeMobile)
       function closeMobile() {
         document.getElementById('mobileMenu').classList.remove('open')
-        hamburger.classList.remove('open')
         document.body.style.overflow = ''
       }
 
