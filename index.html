@@ -1838,7 +1838,7 @@
           padding: 35px 0 50px !important;
         }
         .scroll-cue {
-          display: flex;
+          display: none;
         }
         .section-pad {
           padding: 72px 0;
@@ -2902,7 +2902,8 @@
             </div>
             <div class="visit-actions">
               <a href="https://www.google.com/maps/dir/33.6466746,-111.9849824/Cafe+Mollie,+6031+N+16th+St+suite+5,+Phoenix,+AZ+85016/@33.5894671,-112.09815,29575m/data=!3m2!1e3!4b1!4m17!1m7!3m6!1s0x872b0d0513a8516b:0xe4405012e306abc3!2sCafe+Mollie!8m2!3d33.5249296!4d-112.0467551!16s%2Fg%2F11n8sr_1xg!4m8!1m1!4e1!1m5!1m1!1s0x872b0d0513a8516b:0xe4405012e306abc3!2m2!1d-112.0468007!2d33.5249981!5m1!1e2?entry=ttu&g_ep=EgoyMDI2MDYwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="btn btn-primary"><span>Get Directions</span></a>
-              <a href="tel:6026122313" class="btn btn-sage hide">Call Us</a>
+              <button id="directionsBtn" class="btn btn-primary"><span>🚗 Get Directions</span></button>
+              <!-- <a href="tel:6026122313" class="btn btn-sage hide">Call Us</a> -->
             </div>
           </div>
         </div>
@@ -3184,6 +3185,42 @@
       //     }
       //   })
       // })
+
+      // Get directions button based on OS
+      ;(function () {
+        // ============================================================
+        // DESTINATION: Cafe Mollie – precise coordinates + address
+        // ============================================================
+        const lat = 33.52495 // Latitude from your Google Maps link
+        const lng = -112.04676 // Longitude from your Google Maps link
+        const address = 'Cafe Mollie, 6031 N 16th St Ste 5, Phoenix, AZ 85016'
+
+        // ----- Google Maps URL (works everywhere) -----
+        // Uses Google's official directions API with 'api=1' (required parameter)
+        const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}&destination_place_id=${lat},${lng}`
+
+        // ----- Apple Maps URL (best for iPhones) -----
+        // Uses the 'q' parameter for a search/directions request
+        const appleMapsUrl = `https://maps.apple.com/?q=${encodeURIComponent(address)}&ll=${lat},${lng}`
+
+        // ----- Device detection -----
+        // Check if the user is on an Apple handheld device (iPhone, iPad, iPod)
+        const isAppleDevice = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+
+        // ----- Attach click handler to the button -----
+        const btn = document.getElementById('directionsBtn')
+        if (btn) {
+          btn.addEventListener('click', function () {
+            if (isAppleDevice) {
+              // iOS / iPadOS → Apple Maps
+              window.open(appleMapsUrl, '_blank')
+            } else {
+              // Android, Windows, Linux, macOS, etc. → Google Maps
+              window.open(googleMapsUrl, '_blank')
+            }
+          })
+        }
+      })()
     </script>
   </body>
 </html>
